@@ -71,15 +71,15 @@ export class ReSolidityToolController {
         destinador: z.string().describe("Endereço do destinador."),
         armazenador: z.string().describe("Endereço do Armazenador Temporário (opcional)."),
         residuos: z.object({
-          codigoIbama: z.string().optional(),
-          quantidade: z.number(),
-          unidade: z.number(),
+          codigoIbama: z.string().describe("Código IBAMA do residuo (seis dígitos ex.: 010101)."),
+          quantidade: z.number().describe("Quantidade do residuo"),
+          unidade: z.number().describe("Unidade do residuo (1 para KG, 2 para TON, 3 para m3)"),
           tecnologia: z.number(),
-          densidade: z.number().optional(),
-          estadoFisico: z.number(),
-          classe: z.number(),
-          numeroOnu: z.number().optional(),
-          classeRisco: z.number().optional()
+          densidade: z.number().describe("Densidade do residuo (0 se unidade diferente de 3)"),
+          estadoFisico: z.number().describe("0 para sólido, 1 para liquido/aquoso"),
+          classe: z.number().describe("Classe do residuo (1, 2 ou 3)"),
+          numeroOnu: z.number().describe("Número da ONU (0 se residuo diferente de classe 3)"),
+          classeRisco: z.number().describe("Classe de risco do residuo (0 se residuo diferente de classe 3)")
           
           }).array().describe("Lista de resíduos a serem transportados."), // Changed from z.string() to z.object({})
                 },
