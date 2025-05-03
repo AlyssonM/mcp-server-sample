@@ -24,7 +24,7 @@ export class ReSolidityApiService {
     method: string = "GET",
     body?: object
   ): Promise<T | null> {
-    const url = `http://localhost:3000/api/mtr/${endpoint}`;
+    const url = `https://3000-idx-resolidity-1745611202266.cluster-4xpux6pqdzhrktbhjf2cumyqtg.cloudworkstations.dev/api/mtr/${endpoint}`;
     const headers = {
       "Content-Type": "application/json",
     };
