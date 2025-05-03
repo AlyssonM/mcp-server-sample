@@ -3,6 +3,9 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { NWSApiService } from "./infrastructure/services/NWSApiService.js";
 import { WeatherService } from "./application/services/WeatherService.js";
 import { WeatherToolsController } from "./interface/controllers/WeatherToolsController.js";
+import { ReSolidityToolController } from "./interface/controllers/ReSolidityToolController.js"
+import { ReSolidityService } from "./application/services/ReSolidityService.js";
+import { ReSolidityApiService } from './infrastructure/services/ReSolidityApiService.js';
 
 async function main() {
   // Criação da instância do servidor MCP
@@ -18,9 +21,12 @@ async function main() {
   // Inicializando serviços e controladores
   const nwsApiService = new NWSApiService();
   const weatherService = new WeatherService(nwsApiService);
+  const reSolidityApiService = new ReSolidityApiService();
+  const reSolidityService = new ReSolidityService(reSolidityApiService);
 
   // Controlador que registra as ferramentas
   new WeatherToolsController(server, weatherService);
+  new ReSolidityToolController(server, reSolidityService); // Keep this line as is, previous instruction was to remove server
 
   // Configurando e iniciando o servidor
   const transport = new StdioServerTransport();
