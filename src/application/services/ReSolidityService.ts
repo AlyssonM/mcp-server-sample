@@ -23,15 +23,15 @@ export class ReSolidityService {
     destinador: string,
     armazenador: string,
     residuos: any[]
-  ): Promise<{ numero: number; txHash: string; } | null> {
+  ): Promise<{ message: string; txHash: string; } | null> {
     const result = await this.apiService.emitirMTR( 
  geradorSigner,
  transportador,
  destinador,
  armazenador,
  residuos
-    ) as { numero: number; txHash: string } | null;
-    return result ? { numero: result.numero, txHash: result.txHash } : null;
+    ) as { message: string; txHash: string } | null;
+    return result ? { message: result.message, txHash: result.txHash } : null;
   }
   public async listarMTRsDoGerador(gerador: string): Promise<string[] | null> {
     const result = await this.apiService.listarMTRsDoGerador(gerador) as string[] | null;

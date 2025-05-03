@@ -99,7 +99,7 @@ export class ReSolidityToolController {
  }
 
  return {
-          content: [{ type: "text", text: `MTR emitted with number: ${result.numero}` }],
+          content: [{ type: "text", text: `MTR emitted with txhash: ${result.txHash}` }],
         };
       });
   }
